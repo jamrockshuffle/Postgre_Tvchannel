@@ -11,3 +11,12 @@ public class TvchannelApplication {
     }
 
 }
+
+
+/*Type type = new Type(1L, "asda");
+
+        typeRepository.save(type);
+
+        Program program = new Program(1L, "asdads", typeRepository.getById(1L));
+
+        programRepository.save(program);*/

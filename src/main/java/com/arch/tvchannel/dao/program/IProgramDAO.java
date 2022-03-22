@@ -1,9 +1,8 @@
-package com.arch.tvchannel.service.program;
+package com.arch.tvchannel.dao.program;
 
 import com.arch.tvchannel.model.Program;
-import com.arch.tvchannel.model.Type;
 
-public interface IProgramService {
+public interface IProgramDAO {
 
     Program create (Program program);
     Program update (Program program);

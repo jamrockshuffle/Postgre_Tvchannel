@@ -1,11 +1,9 @@
 package com.arch.tvchannel.controller.rest;
 
 import com.arch.tvchannel.model.Program;
-import com.arch.tvchannel.model.Type;
 import com.arch.tvchannel.repository.ProgramRepository;
 import com.arch.tvchannel.repository.TypeRepository;
-import com.arch.tvchannel.service.program.ProgramServiceImpl;
-import com.arch.tvchannel.service.type.TypeServiceImpl;
+import com.arch.tvchannel.dao.program.ProgramDAOImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,15 +24,6 @@ public class ProgramController {
 
     @GetMapping("/get/all")
     private List<Program> getAll(){
-
-        /*Type type = new Type(1L, "asda");
-
-        typeRepository.save(type);
-
-        Program program = new Program(1L, "asdads", typeRepository.getById(1L));
-
-        programRepository.save(program);*/
-
 
         return programRepository.findAll();
     }

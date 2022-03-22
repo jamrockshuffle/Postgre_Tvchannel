@@ -2,14 +2,12 @@ package com.arch.tvchannel.controller.rest;
 
 import com.arch.tvchannel.model.Type;
 import com.arch.tvchannel.repository.TypeRepository;
-import com.arch.tvchannel.service.type.TypeServiceImpl;
+import com.arch.tvchannel.dao.type.TypeDAOImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -24,17 +22,16 @@ public class TypeController {
     @Autowired
     TypeServiceImpl service;
 
-    //http://localhost:1212/api/type/get/a?page=0&size=3
+    //http://localhost:1212/api/type/get/pages?page=0&size=3
 
-    @GetMapping("/get/a")
-    private ResponseEntity<Page<Type>> getA(@RequestParam Integer page, @RequestParam Integer size){
+    @GetMapping("/get/pages")
+    private ResponseEntity<Page<Type>> getPages(@RequestParam Integer page, @RequestParam Integer size){
 
-        return ResponseEntity.ok(service.findA(page, size));
+        return ResponseEntity.ok(service.findPages(page, size));
     }
 
     @GetMapping("/get/all")
     private List<Type> getAll(){
-
 
         return typeRepository.findAll();
     }
