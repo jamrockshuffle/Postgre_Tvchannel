@@ -4,6 +4,7 @@ import com.arch.tvchannel.model.Program;
 import com.arch.tvchannel.repository.ProgramRepository;
 import com.arch.tvchannel.repository.TypeRepository;
 import com.arch.tvchannel.dao.program.ProgramDAOImpl;
+import com.arch.tvchannel.service.program.ProgramServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

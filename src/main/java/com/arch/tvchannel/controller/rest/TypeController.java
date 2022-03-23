@@ -3,6 +3,7 @@ package com.arch.tvchannel.controller.rest;
 import com.arch.tvchannel.model.Type;
 import com.arch.tvchannel.repository.TypeRepository;
 import com.arch.tvchannel.dao.type.TypeDAOImpl;
+import com.arch.tvchannel.service.type.TypeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;

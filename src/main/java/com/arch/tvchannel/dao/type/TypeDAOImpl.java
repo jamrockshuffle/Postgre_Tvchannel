@@ -14,13 +14,6 @@ public class TypeDAOImpl implements ITypeDAO {
     TypeRepository repository;
 
     @Override
-    public Page<Type> findPages(Integer page, Integer size) {
-
-        var pageable = PageRequest.of(page, size);
-        return repository.findAll(pageable);
-    }
-
-    @Override
     public Type create(Type type) {
 
         Long id = (long) (repository.findAll().stream()

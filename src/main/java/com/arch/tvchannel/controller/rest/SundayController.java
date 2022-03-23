@@ -7,6 +7,7 @@ import com.arch.tvchannel.model.Sunday;
 import com.arch.tvchannel.repository.MondayRepository;
 import com.arch.tvchannel.repository.ProgramRepository;
 import com.arch.tvchannel.repository.SundayRepository;
+import com.arch.tvchannel.service.sunday.SundayServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
