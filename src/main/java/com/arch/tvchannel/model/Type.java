@@ -1,14 +1,13 @@
 package com.arch.tvchannel.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Set;
 
-@Data
 @Entity(name = "types")
 public class Type {
 
@@ -16,7 +15,8 @@ public class Type {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "type")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "type", fetch = FetchType.EAGER)
     private Set<Program> programs;
 
     public Type() {
@@ -59,5 +59,13 @@ public class Type {
 
     public void setPrograms(Set<Program> programs) {
         this.programs = programs;
+    }
+
+    @Override
+    public String toString() {
+        return "Type{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

@@ -1,11 +1,12 @@
 package com.arch.tvchannel.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Set;
 
-@Data
 @Entity(name = "programs")
 public class Program {
 
@@ -13,29 +14,38 @@ public class Program {
     private Long id;
     private String name;
 
-    @ManyToOne
-    @JoinColumn()
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "type_id")
     private Type type;
 
-    @OneToMany(mappedBy = "program")
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "program", fetch = FetchType.EAGER)
     private Set<Monday> monday;
 
-    @OneToMany(mappedBy = "program")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "program", fetch = FetchType.EAGER)
     private Set<Tuesday> tuesday;
 
-    @OneToMany(mappedBy = "program")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "program", fetch = FetchType.EAGER)
     private Set<Wednesday> wednesday;
 
-    @OneToMany(mappedBy = "program")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "program", fetch = FetchType.EAGER)
     private Set<Thursday> thursday;
 
-    @OneToMany(mappedBy = "program")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "program", fetch = FetchType.EAGER)
     private Set<Friday> friday;
 
-    @OneToMany(mappedBy = "program")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "program", fetch = FetchType.EAGER)
     private Set<Saturday> saturday;
 
-    @OneToMany(mappedBy = "program")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "program", fetch = FetchType.EAGER)
     private Set<Sunday> sundays;
 
     public Program() {
@@ -139,6 +149,15 @@ public class Program {
 
     public void setSundays(Set<Sunday> sundays) {
         this.sundays = sundays;
+    }
+
+    @Override
+    public String toString() {
+        return "Program{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", type=" + type +
+                '}';
     }
 
     /*

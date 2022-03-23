@@ -1,11 +1,9 @@
 package com.arch.tvchannel.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalTime;
 
 @Data
@@ -16,7 +14,8 @@ public class Friday {
     private Long id;
     private LocalTime airingTime;
 
-    @ManyToOne
-    @JoinColumn()
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "program_id")
     private Program program;
 }

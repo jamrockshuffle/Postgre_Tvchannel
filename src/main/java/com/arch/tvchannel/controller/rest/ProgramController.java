@@ -26,6 +26,9 @@ public class ProgramController {
     @GetMapping("/get/all")
     private List<Program> getAll(){
 
+        //Program program = new Program(1L, "qweewq", typeRepository.getById(1L));
+        //programRepository.save(program);
+
         return programRepository.findAll();
     }
 
