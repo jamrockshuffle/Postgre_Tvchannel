@@ -6,8 +6,9 @@ import com.arch.tvchannel.model.Friday;
 import com.arch.tvchannel.model.Monday;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-@Repository
+@Service
 public class FridayServiceImpl implements IFridayService {
 
     @Autowired

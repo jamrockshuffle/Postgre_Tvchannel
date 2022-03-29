@@ -6,7 +6,6 @@ import lombok.Data;
 import javax.persistence.*;
 import java.time.LocalTime;
 
-@Data
 @Entity(name = "sunday")
 public class Sunday {
 
@@ -18,4 +17,46 @@ public class Sunday {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "program_id")
     private Program program;
+
+    public Sunday() {
+    }
+
+    public Sunday(Long id, LocalTime airingTime, Program program) {
+        this.id = id;
+        this.airingTime = airingTime;
+        this.program = program;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalTime getAiringTime() {
+        return airingTime;
+    }
+
+    public void setAiringTime(LocalTime airingTime) {
+        this.airingTime = airingTime;
+    }
+
+    public Program getProgram() {
+        return program;
+    }
+
+    public void setProgram(Program program) {
+        this.program = program;
+    }
+
+    @Override
+    public String toString() {
+        return "Sunday{" +
+                "id=" + id +
+                ", airingTime=" + airingTime +
+                ", program=" + program +
+                '}';
+    }
 }

@@ -1,18 +1,26 @@
 package com.arch.tvchannel.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.Set;
 
+@Schema(description = " Type List? Entity")
 @Entity(name = "types")
+@Builder
 public class Type {
 
+    @Schema(description = " Type's auto-generated id")
     @Id
     private Long id;
+    @Schema(description = " Type of a program", example = "Серіал")
     private String name;
 
     @JsonManagedReference
