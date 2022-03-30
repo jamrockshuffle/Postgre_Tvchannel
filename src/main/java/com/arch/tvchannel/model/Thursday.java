@@ -1,12 +1,14 @@
 package com.arch.tvchannel.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalTime;
 
 @Entity(name = "thursday")
+@Builder
 public class Thursday {
 
     @Id

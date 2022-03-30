@@ -2,12 +2,14 @@ package com.arch.tvchannel.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity(name = "programs")
+@Builder
 public class Program {
 
     @Id
@@ -46,7 +48,7 @@ public class Program {
 
     @JsonManagedReference
     @OneToMany(mappedBy = "program", fetch = FetchType.EAGER)
-    private Set<Sunday> sundays;
+    private Set<Sunday> sunday;
 
     public Program() {
     }
@@ -65,6 +67,19 @@ public class Program {
     public Program(String name, Type type) {
         this.name = name;
         this.type = type;
+    }
+
+    public Program(Long id, String name, Type type, Set<Monday> monday, Set<Tuesday> tuesday, Set<Wednesday> wednesday, Set<Thursday> thursday, Set<Friday> friday, Set<Saturday> saturday, Set<Sunday> sunday) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.monday = monday;
+        this.tuesday = tuesday;
+        this.wednesday = wednesday;
+        this.thursday = thursday;
+        this.friday = friday;
+        this.saturday = saturday;
+        this.sunday = sunday;
     }
 
     public Program(String name) {
@@ -143,12 +158,12 @@ public class Program {
         this.saturday = saturday;
     }
 
-    public Set<Sunday> getSundays() {
-        return sundays;
+    public Set<Sunday> getSunday() {
+        return sunday;
     }
 
-    public void setSundays(Set<Sunday> sundays) {
-        this.sundays = sundays;
+    public void setSunday(Set<Sunday> sunday) {
+        this.sunday = sunday;
     }
 
     @Override
