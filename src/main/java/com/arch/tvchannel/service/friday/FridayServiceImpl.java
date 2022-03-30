@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.HashSet;
 
 @Service
@@ -50,7 +51,7 @@ public class FridayServiceImpl implements IFridayService {
 
         var day = Friday.builder()
                 .id(id)
-                .airingTime(request.getAiringTime())
+                .airingTime(LocalTime.parse(request.getAiringTime()))
                 .program(programRepository.findById(request.getProgram()).get())
                 .build();
 
@@ -61,7 +62,7 @@ public class FridayServiceImpl implements IFridayService {
 
         var day = Friday.builder()
                 .id(repository.findById(request.getId()).get().getId())
-                .airingTime(request.getAiringTime())
+                .airingTime(LocalTime.parse(request.getAiringTime()))
                 .program(programRepository.findById(request.getProgram()).get())
                 .build();
 

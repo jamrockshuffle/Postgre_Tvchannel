@@ -4,22 +4,22 @@ import java.time.LocalTime;
 
 public class DayDTOCreate {
 
-    private LocalTime airingTime;
+    private String airingTime;
     private Long program;
 
     public DayDTOCreate() {
     }
 
-    public DayDTOCreate(LocalTime airingTime, Long program) {
+    public DayDTOCreate(String airingTime, Long program) {
         this.airingTime = airingTime;
         this.program = program;
     }
 
-    public LocalTime getAiringTime() {
+    public String getAiringTime() {
         return airingTime;
     }
 
-    public void setAiringTime(LocalTime airingTime) {
+    public void setAiringTime(String airingTime) {
         this.airingTime = airingTime;
     }
 

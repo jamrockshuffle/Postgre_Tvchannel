@@ -4,13 +4,13 @@ import java.time.LocalTime;
 public class DayDTOUpdate {
 
     private Long id;
-    private LocalTime airingTime;
+    private String airingTime;
     private Long program;
 
     public DayDTOUpdate() {
     }
 
-    public DayDTOUpdate(Long id, LocalTime airingTime, Long program) {
+    public DayDTOUpdate(Long id, String airingTime, Long program) {
         this.id = id;
         this.airingTime = airingTime;
         this.program = program;
@@ -24,11 +24,11 @@ public class DayDTOUpdate {
         this.id = id;
     }
 
-    public LocalTime getAiringTime() {
+    public String getAiringTime() {
         return airingTime;
     }
 
-    public void setAiringTime(LocalTime airingTime) {
+    public void setAiringTime(String airingTime) {
         this.airingTime = airingTime;
     }
 

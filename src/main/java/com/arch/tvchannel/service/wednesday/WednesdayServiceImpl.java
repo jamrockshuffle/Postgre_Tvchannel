@@ -13,6 +13,8 @@ import com.arch.tvchannel.repository.WednesdayRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalTime;
+
 @Repository
 public class WednesdayServiceImpl implements IWednesdayService {
 
@@ -46,7 +48,7 @@ public class WednesdayServiceImpl implements IWednesdayService {
 
         var day = Wednesday.builder()
                 .id(id)
-                .airingTime(request.getAiringTime())
+                .airingTime(LocalTime.parse(request.getAiringTime()))
                 .program(programRepository.findById(request.getProgram()).get())
                 .build();
 
@@ -57,7 +59,7 @@ public class WednesdayServiceImpl implements IWednesdayService {
 
         var day = Wednesday.builder()
                 .id(repository.findById(request.getId()).get().getId())
-                .airingTime(request.getAiringTime())
+                .airingTime(LocalTime.parse(request.getAiringTime()))
                 .program(programRepository.findById(request.getProgram()).get())
                 .build();
 

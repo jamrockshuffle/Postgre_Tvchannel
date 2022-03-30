@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
+
 @Service
 public class ThursdayServiceImpl implements IThursdayService {
 
@@ -47,7 +49,7 @@ public class ThursdayServiceImpl implements IThursdayService {
 
         var day = Thursday.builder()
                 .id(id)
-                .airingTime(request.getAiringTime())
+                .airingTime(LocalTime.parse(request.getAiringTime()))
                 .program(programRepository.findById(request.getProgram()).get())
                 .build();
 
@@ -58,7 +60,7 @@ public class ThursdayServiceImpl implements IThursdayService {
 
         var day = Thursday.builder()
                 .id(repository.findById(request.getId()).get().getId())
-                .airingTime(request.getAiringTime())
+                .airingTime(LocalTime.parse(request.getAiringTime()))
                 .program(programRepository.findById(request.getProgram()).get())
                 .build();
 

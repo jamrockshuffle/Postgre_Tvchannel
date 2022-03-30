@@ -32,13 +32,13 @@ public class SwaggerConfiguration {
         return new OpenAPI()
                 .info(
                         new Info()
-                                .title("Курсовий проєкт (Бібліотека)")
-                                .description("Курсова робота Бідюка Миколи, студента 2-го курсу")
+                                .title("Електронний розклад роботи телеканалу")
+                                .description("3-й курс")
                                 .version("1.0")
                                 .contact(new Contact()
                                         .email("bidyuk.mykola@chnu.edu.ua")
                                         .name("Kolja")
-                                        .url("http://localhost:1010"))
+                                        .url("http://localhost:1212"))
                 );
     }*/
 
