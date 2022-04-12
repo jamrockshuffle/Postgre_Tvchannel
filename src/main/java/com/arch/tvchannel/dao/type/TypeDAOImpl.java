@@ -6,12 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-@Repository
+@Service
 public class TypeDAOImpl implements ITypeDAO {
 
     @Autowired
     TypeRepository repository;
+
+    private TypeRepository repo;
+
+    /*public TypeDAOImpl(TypeRepository repo) {
+        this.repo = repo;
+    }*/
 
     @Override
     public Type create(Type type) {
@@ -34,5 +41,10 @@ public class TypeDAOImpl implements ITypeDAO {
 
         repository.save(type);
         return type;
+    }
+
+    public Type findByName(String name){
+
+        return repository.findTypeByName(name).get();
     }
 }

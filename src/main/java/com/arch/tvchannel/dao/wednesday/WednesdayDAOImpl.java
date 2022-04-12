@@ -6,8 +6,9 @@ import com.arch.tvchannel.repository.MondayRepository;
 import com.arch.tvchannel.repository.WednesdayRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-@Repository
+@Service
 public class WednesdayDAOImpl implements IWednesdayDAO {
 
     @Autowired

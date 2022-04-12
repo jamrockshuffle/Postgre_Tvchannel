@@ -4,8 +4,9 @@ import com.arch.tvchannel.model.Program;
 import com.arch.tvchannel.repository.ProgramRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-@Repository
+@Service
 public class ProgramDAOImpl implements IProgramDAO {
 
     @Autowired

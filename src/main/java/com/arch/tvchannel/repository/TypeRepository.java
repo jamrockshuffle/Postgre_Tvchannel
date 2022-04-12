@@ -13,7 +13,7 @@ import java.util.Optional;
 @Repository
 public interface TypeRepository extends JpaRepository<Type, Long> {
 
-    //Optional<Type> findTypeByName(String name);
+    Optional<Type> findTypeByName(String name);
     //Optional<Type> findTypeByProgram_Id(Long id);
 
     //List<Type> findAllByProgramsIn(Collection<Program> programs);
