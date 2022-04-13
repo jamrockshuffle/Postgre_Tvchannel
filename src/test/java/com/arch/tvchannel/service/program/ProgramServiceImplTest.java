@@ -53,7 +53,7 @@ class ProgramServiceImplTest {
 
     @Test
     @Order(1)
-    public void create() {
+    public void create() throws Exception{
 
         var type = Type.builder()
                 .name("Докуменалка")
@@ -82,7 +82,7 @@ class ProgramServiceImplTest {
 
     @Test
     @Order(2)
-    public void update() {
+    public void update() throws Exception{
         create();
 
         var program = Program.builder()
@@ -106,7 +106,7 @@ class ProgramServiceImplTest {
 
     @Test
     @Order(3)
-    public void findAll() {
+    public void findAll() throws Exception{
         create();
 
         List<Program> list = programRepository.findAll();
@@ -117,7 +117,7 @@ class ProgramServiceImplTest {
 
     @Test
     @Order(4)
-    public void findById() {
+    public void findById() throws Exception{
         create();
 
         Program program = programRepository.findById(1L).get();
@@ -127,7 +127,7 @@ class ProgramServiceImplTest {
 
     @Test
     @Order(5)
-    public void deleteById() {
+    public void deleteById() throws Exception{
         create();
 
         programRepository.deleteById(1L);
@@ -145,7 +145,7 @@ class ProgramServiceImplTest {
 
     @Test
     @Order(6)
-    public void createDTO() {
+    public void createDTO() throws Exception{
 
         TypeDTOCreate dtoCreate = new TypeDTOCreate();
         dtoCreate.setName("typetest");
@@ -164,7 +164,7 @@ class ProgramServiceImplTest {
 
     @Test
     @Order(7)
-    public void updateDTO() {
+    public void updateDTO() throws Exception{
         createDTO();
 
         ProgramDTOUpdate dtoUpdate = new ProgramDTOUpdate();

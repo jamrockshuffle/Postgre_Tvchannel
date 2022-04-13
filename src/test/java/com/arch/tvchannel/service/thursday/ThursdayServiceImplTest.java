@@ -1,16 +1,14 @@
-package com.arch.tvchannel.service.monday;
+package com.arch.tvchannel.service.thursday;
 
 import com.arch.tvchannel.dto.day.DayDTOCreate;
 import com.arch.tvchannel.dto.day.DayDTOUpdate;
 import com.arch.tvchannel.dto.program.ProgramDTOCreate;
-import com.arch.tvchannel.dto.program.ProgramDTOUpdate;
 import com.arch.tvchannel.dto.type.TypeDTOCreate;
 import com.arch.tvchannel.model.Monday;
-import com.arch.tvchannel.model.Program;
-import com.arch.tvchannel.model.Type;
+import com.arch.tvchannel.model.Thursday;
 import com.arch.tvchannel.repository.MondayRepository;
-import com.arch.tvchannel.repository.ProgramRepository;
-import com.arch.tvchannel.repository.TypeRepository;
+import com.arch.tvchannel.repository.ThursdayRepository;
+import com.arch.tvchannel.service.monday.MondayServiceImpl;
 import com.arch.tvchannel.service.program.ProgramServiceImpl;
 import com.arch.tvchannel.service.type.TypeServiceImpl;
 import org.junit.jupiter.api.MethodOrderer;
@@ -25,7 +23,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 
 import java.time.LocalTime;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,22 +30,22 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
-@ComponentScan(basePackages = {"com.arch.tvchannel.service.monday"})
-@ComponentScan(basePackages = {"com.arch.tvchannel.dao.monday"})
+@ComponentScan(basePackages = {"com.arch.tvchannel.service.thursday"})
+@ComponentScan(basePackages = {"com.arch.tvchannel.dao.thursday"})
 @ComponentScan(basePackages = {"com.arch.tvchannel.service.type"})
 @ComponentScan(basePackages = {"com.arch.tvchannel.dao.type"})
 @ComponentScan(basePackages = {"com.arch.tvchannel.service.program"})
 @ComponentScan(basePackages = {"com.arch.tvchannel.dao.program"})
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class MondayServiceImplTest {
+class ThursdayServiceImplTest {
 
     @Autowired
     @Mock
-    MondayRepository repository;
+    ThursdayRepository repository;
 
     @Autowired
     @Mock
-    MondayServiceImpl service;
+    ThursdayServiceImpl service;
 
     @Autowired
     @Mock
@@ -62,7 +59,7 @@ class MondayServiceImplTest {
     @Order(1)
     public void create() throws Exception{
 
-        var day = Monday.builder()
+        var day = Thursday.builder()
                 .airingTime(LocalTime.of(12,00))
                 .program(null)
                 .build();
@@ -78,7 +75,7 @@ class MondayServiceImplTest {
     public void update() throws Exception{
         create();
 
-        var day = Monday.builder()
+        var day = Thursday.builder()
                 .id(1L)
                 .airingTime(LocalTime.of(11,00))
                 .program(null)
@@ -95,7 +92,7 @@ class MondayServiceImplTest {
     public void findAll() throws Exception{
         create();
 
-        List<Monday> list = repository.findAll();
+        List<Thursday> list = repository.findAll();
 
         assert list.size() > 0;
     }
@@ -106,7 +103,7 @@ class MondayServiceImplTest {
     public void findById() throws Exception{
         create();
 
-        Monday day = repository.findById(1L).get();
+        Thursday day = repository.findById(1L).get();
 
         assert day.getId().equals(1L);
     }
@@ -118,9 +115,9 @@ class MondayServiceImplTest {
 
         repository.deleteById(1L);
 
-        Monday day = null;
+        Thursday day = null;
 
-        Optional<Monday> optional = repository.findById(1L);
+        Optional<Thursday> optional = repository.findById(1L);
 
         if (optional.isPresent()) {
             day = optional.get();

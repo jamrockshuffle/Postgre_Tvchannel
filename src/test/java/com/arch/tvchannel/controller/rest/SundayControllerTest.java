@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.mockito.Mock;
@@ -44,6 +45,7 @@ class SundayControllerTest {
             Charset.forName("utf8"));
 
     @Test
+    @Order(1)
     void create() throws Exception{
 
         var day = Sunday.builder()
@@ -68,6 +70,7 @@ class SundayControllerTest {
 
 
     @Test
+    @Order(2)
     void update() throws Exception{
 
         var day = Sunday.builder()
@@ -91,6 +94,7 @@ class SundayControllerTest {
     }
 
     @Test
+    @Order(3)
     void getTypes() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/sunday/get/all"))
@@ -101,6 +105,7 @@ class SundayControllerTest {
     }
 
     @Test
+    @Order(4)
     void getById() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/sunday/get/1"))
@@ -110,6 +115,7 @@ class SundayControllerTest {
     }
 
     @Test
+    @Order(5)
     void delete() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/sunday/delete/1"))
@@ -121,6 +127,7 @@ class SundayControllerTest {
     }
 
     @Test
+    @Order(6)
     void createDTO() throws Exception{
 
         DayDTOCreate dtoCreate = new DayDTOCreate();
@@ -142,6 +149,7 @@ class SundayControllerTest {
     }
 
     @Test
+    @Order(7)
     void updateDTO() throws Exception{
 
         DayDTOUpdate dtoUpdate = new DayDTOUpdate();

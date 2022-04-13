@@ -41,7 +41,7 @@ class TypeServiceImplTest {
 
     @Test
     @Order(1)
-    public void create() {
+    public void create() throws Exception{
 
         var type = Type.builder()
                 .name("Докуменалка")
@@ -56,7 +56,7 @@ class TypeServiceImplTest {
 
     @Test
     @Order(2)
-    public void update() {
+    public void update() throws Exception{
 
         var type = Type.builder()
                 .id(1L)
@@ -72,7 +72,7 @@ class TypeServiceImplTest {
 
     @Test
     @Order(3)
-    public void findAll() {
+    public void findAll() throws Exception{
         create();
 
         List<Type> list = typeRepository.findAll();
@@ -82,7 +82,7 @@ class TypeServiceImplTest {
 
     @Test
     @Order(4)
-    public void findById() {
+    public void findById() throws Exception{
         create();
 
         Type type = typeRepository.findById(1L).get();
@@ -92,7 +92,7 @@ class TypeServiceImplTest {
 
     @Test
     @Order(5)
-    public void deleteById() {
+    public void deleteById() throws Exception{
         create();
 
         typeRepository.deleteById(1L);
@@ -110,7 +110,7 @@ class TypeServiceImplTest {
 
     @Test
     @Order(6)
-    public void createDTO() {
+    public void createDTO() throws Exception{
 
         TypeDTOCreate dtoCreate = new TypeDTOCreate();
         dtoCreate.setName("asd");
@@ -123,7 +123,7 @@ class TypeServiceImplTest {
 
     @Test
     @Order(7)
-    public void updateDTO() {
+    public void updateDTO() throws Exception{
         createDTO();
 
         TypeDTOUpdate dtoUpdate = new TypeDTOUpdate();
