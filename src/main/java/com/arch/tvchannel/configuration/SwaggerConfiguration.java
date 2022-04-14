@@ -36,7 +36,7 @@ public class SwaggerConfiguration {
                                 .description("3-й курс")
                                 .version("1.0")
                                 .contact(new Contact()
-                                        .email("bidyuk.mykola@chnu.edu.ua")
+                                        .email("blabla")
                                         .name("Kolja")
                                         .url("http://localhost:1212"))
                 );
