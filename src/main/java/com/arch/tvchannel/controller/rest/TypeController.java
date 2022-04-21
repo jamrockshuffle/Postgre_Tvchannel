@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +33,7 @@ public class TypeController {
     @Operation(summary = " Pagination",
             description = " Finds and displays Types with requested page and size")
     @GetMapping("/get/pages")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
     private ResponseEntity<Page<Type>> getPages(@RequestParam Integer page, @RequestParam Integer size){
 
         return ResponseEntity.ok(service.findPages(page, size));
@@ -40,6 +42,7 @@ public class TypeController {
     @Operation(summary = " Get all Types",
             description = " Finds and displays all Types")
     @GetMapping("/get/all")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
     private List<Type> getAll(){
 
         return typeRepository.findAll();
@@ -48,6 +51,7 @@ public class TypeController {
     @Operation(summary = " Get one Type",
             description = " Finds and displays Type with specified id")
     @GetMapping("/get/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
     private Type getById(@PathVariable Long id){
 
         return typeRepository.findById(id).orElse(null);
@@ -56,6 +60,7 @@ public class TypeController {
     @Operation(summary = " Type deletion",
             description = " Deletes Type with specified id")
     @GetMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     private List<Type> deleteById(@PathVariable Long id){
 
         typeRepository.deleteById(id);
@@ -66,6 +71,7 @@ public class TypeController {
     @Operation(summary = " Type creation",
             description = " Adds new type to the Type list. Id to be created is UUID type ")
     @PostMapping("/create")
+    @PreAuthorize("hasRole('ADMIN')")
     public Type create(@RequestBody Type type){
 
         return service.create(type);
@@ -74,6 +80,7 @@ public class TypeController {
     @Operation(summary = " Type updating",
             description = " Updates Type with specified id")
     @PostMapping("/update")
+    @PreAuthorize("hasRole('ADMIN')")
     public Type update(@RequestBody Type type){
 
         return service.update(type);
@@ -82,6 +89,7 @@ public class TypeController {
     @Operation(summary = " DTO Type creation",
             description = " Adds new type to the Type list. Id to be created is UUID type ")
     @PostMapping("/createDTO")
+    @PreAuthorize("hasRole('ADMIN')")
     public Type createDTO(@RequestBody TypeDTOCreate type){
 
         return service.createDTO(type);
@@ -90,6 +98,7 @@ public class TypeController {
     @Operation(summary = " DTO Type updating",
             description = " Updates Type with specified id")
     @PostMapping("/updateDTO")
+    @PreAuthorize("hasRole('ADMIN')")
     public Type updateDTO(@RequestBody TypeDTOUpdate type){
 
         return service.updateDTO(type);
