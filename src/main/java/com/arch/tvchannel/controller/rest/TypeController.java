@@ -23,7 +23,7 @@ public class TypeController {
     //@RequestMapping(value = "/gte", method = RequestMethod.GET)
 
     @Autowired
-    TypeRepository typeRepository;
+    public TypeRepository typeRepository;
 
     @Autowired
     TypeServiceImpl service;
@@ -43,7 +43,7 @@ public class TypeController {
             description = " Finds and displays all Types")
     @GetMapping("/get/all")
     @PreAuthorize("hasAnyRole('ADMIN, USER')")
-    private List<Type> getAll(){
+    public List<Type> getAll(){
 
         return typeRepository.findAll();
     }
@@ -52,7 +52,7 @@ public class TypeController {
             description = " Finds and displays Type with specified id")
     @GetMapping("/get/{id}")
     @PreAuthorize("hasAnyRole('ADMIN, USER')")
-    private Type getById(@PathVariable Long id){
+    public Type getById(@PathVariable Long id){
 
         return typeRepository.findById(id).orElse(null);
     }
@@ -61,7 +61,7 @@ public class TypeController {
             description = " Deletes Type with specified id")
     @GetMapping("/delete/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    private List<Type> deleteById(@PathVariable Long id){
+    public List<Type> deleteById(@PathVariable Long id){
 
         typeRepository.deleteById(id);
 

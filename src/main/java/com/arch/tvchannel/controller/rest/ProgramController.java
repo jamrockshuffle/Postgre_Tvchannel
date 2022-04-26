@@ -12,6 +12,7 @@ import com.arch.tvchannel.dao.program.ProgramDAOImpl;
 import com.arch.tvchannel.service.program.ProgramServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,7 +31,8 @@ public class ProgramController {
     ProgramServiceImpl service;
 
     @GetMapping("/get/all")
-    private List<Program> getAll(){
+    //@PreAuthorize("hasAnyRole('ADMIN, USER')")
+    public List<Program> getAll(){
 
         //Program program = new Program(1L, "qweewq", typeRepository.getById(1L));
         //programRepository.save(program);
@@ -39,13 +41,15 @@ public class ProgramController {
     }
 
     @GetMapping("/get/{id}")
-    private Program getById(@PathVariable Long id){
+    //@PreAuthorize("hasAnyRole('ADMIN, USER')")
+    public Program getById(@PathVariable Long id){
 
         return programRepository.findById(id).orElse(null);
     }
 
     @GetMapping("/delete/{id}")
-    private List<Program> deleteById(@PathVariable Long id){
+    //@PreAuthorize("hasRole('ADMIN')")
+    public List<Program> deleteById(@PathVariable Long id){
 
         programRepository.deleteById(id);
 
@@ -53,12 +57,14 @@ public class ProgramController {
     }
 
     @PostMapping("/create")
+    //@PreAuthorize("hasRole('ADMIN')")
     public Program create(@RequestBody Program program){
 
         return service.create(program);
     }
 
     @PostMapping("/update")
+    //@PreAuthorize("hasRole('ADMIN')")
     public Program update(@RequestBody Program program){
 
         return service.update(program);
@@ -67,6 +73,7 @@ public class ProgramController {
     @Operation(summary = " DTO Program creation",
             description = " Adds new program to the Program list. Id to be created is UUID type ")
     @PostMapping("/createDTO")
+    //@PreAuthorize("hasRole('ADMIN')")
     public Program createDTO(@RequestBody ProgramDTOCreate program){
 
         return service.createDTO(program);
@@ -75,6 +82,7 @@ public class ProgramController {
     @Operation(summary = " DTO Program updating",
             description = " Updates Program with specified id")
     @PostMapping("/updateDTO")
+    //@PreAuthorize("hasRole('ADMIN')")
     public Program updateDTO(@RequestBody ProgramDTOUpdate program){
 
         return service.updateDTO(program);

@@ -13,6 +13,7 @@ import com.arch.tvchannel.repository.TuesdayRepository;
 import com.arch.tvchannel.service.tuesday.TuesdayServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,18 +32,21 @@ public class TuesdayController {
     TuesdayServiceImpl service;
 
     @GetMapping("/get/all")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
     private List<Tuesday> getAll(){
 
         return dayRepository.findAll();
     }
 
     @GetMapping("/get/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
     private Tuesday getById(@PathVariable Long id){
 
         return dayRepository.findById(id).orElse(null);
     }
 
     @GetMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     private List<Tuesday> deleteById(@PathVariable Long id){
 
         dayRepository.deleteById(id);
@@ -51,12 +55,14 @@ public class TuesdayController {
     }
 
     @PostMapping("/create")
+    @PreAuthorize("hasRole('ADMIN')")
     public Tuesday create(@RequestBody Tuesday day){
 
         return service.create(day);
     }
 
     @PostMapping("/update")
+    @PreAuthorize("hasRole('ADMIN')")
     public Tuesday update(@RequestBody Tuesday day){
 
         return service.update(day);
@@ -65,6 +71,7 @@ public class TuesdayController {
     @Operation(summary = " DTO Tuesday creation",
             description = " Adds new object to the Tuesday list. Id to be created is UUID type ")
     @PostMapping("/createDTO")
+    @PreAuthorize("hasRole('ADMIN')")
     public Tuesday createDTO(@RequestBody DayDTOCreate day){
 
         return service.createDTO(day);
@@ -73,6 +80,7 @@ public class TuesdayController {
     @Operation(summary = " DTO Tuesday updating",
             description = " Updates Tuesday with specified id")
     @PostMapping("/updateDTO")
+    @PreAuthorize("hasRole('ADMIN')")
     public Tuesday updateDTO(@RequestBody DayDTOUpdate day){
 
         return service.updateDTO(day);

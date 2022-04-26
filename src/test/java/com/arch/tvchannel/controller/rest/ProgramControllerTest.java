@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -49,6 +50,7 @@ class ProgramControllerTest {
 
     @Test
     @Order(1)
+    @WithMockUser(roles = "ADMIN")
     void create() throws Exception{
 
         var program = Program.builder()
@@ -80,6 +82,7 @@ class ProgramControllerTest {
 
     @Test
     @Order(2)
+    @WithMockUser(roles = "ADMIN")
     void update() throws Exception{
 
         var program = Program.builder()
@@ -111,6 +114,7 @@ class ProgramControllerTest {
 
     @Test
     @Order(3)
+    @WithMockUser(roles = "USER")
     void getPrograms() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/program/get/all"))
@@ -123,6 +127,7 @@ class ProgramControllerTest {
 
     @Test
     @Order(4)
+    @WithMockUser(roles = "USER")
     void getById() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/program/get/2"))
@@ -133,6 +138,7 @@ class ProgramControllerTest {
 
     @Test
     @Order(5)
+    @WithMockUser(roles = "ADMIN")
     void delete() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/program/delete/4"))
@@ -145,6 +151,7 @@ class ProgramControllerTest {
 
     @Test
     @Order(6)
+    @WithMockUser(roles = "ADMIN")
     void createDTO() throws Exception{
 
         ProgramDTOCreate dtoCreate = new ProgramDTOCreate();
@@ -168,6 +175,7 @@ class ProgramControllerTest {
 
     @Test
     @Order(7)
+    @WithMockUser(roles = "ADMIN")
     void updateDTO() throws Exception{
 
         ProgramDTOUpdate dtoUpdate = new ProgramDTOUpdate();

@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -46,6 +47,7 @@ class FridayControllerTest {
 
     @Test
     @Order(1)
+    @WithMockUser(roles = "ADMIN")
     void create() throws Exception{
 
         var day = Friday.builder()
@@ -70,6 +72,7 @@ class FridayControllerTest {
 
     @Test
     @Order(2)
+    @WithMockUser(roles = "ADMIN")
     void update() throws Exception{
 
         var day = Friday.builder()
@@ -94,6 +97,7 @@ class FridayControllerTest {
 
     @Test
     @Order(3)
+    @WithMockUser(roles = "USER")
     void getTypes() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/friday/get/all"))
@@ -105,6 +109,7 @@ class FridayControllerTest {
 
     @Test
     @Order(4)
+    @WithMockUser(roles = "USER")
     void getById() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/friday/get/1"))
@@ -115,6 +120,7 @@ class FridayControllerTest {
 
     @Test
     @Order(5)
+    @WithMockUser(roles = "ADMIN")
     void delete() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/friday/delete/1"))
@@ -127,6 +133,7 @@ class FridayControllerTest {
 
     @Test
     @Order(6)
+    @WithMockUser(roles = "ADMIN")
     void createDTO() throws Exception{
 
         DayDTOCreate dtoCreate = new DayDTOCreate();
@@ -149,6 +156,7 @@ class FridayControllerTest {
 
     @Test
     @Order(7)
+    @WithMockUser(roles = "ADMIN")
     void updateDTO() throws Exception{
 
         DayDTOUpdate dtoUpdate = new DayDTOUpdate();

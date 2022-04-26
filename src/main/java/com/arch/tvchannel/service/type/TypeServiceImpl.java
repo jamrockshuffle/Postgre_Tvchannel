@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 
 @Service
 public class TypeServiceImpl implements ITypeService{
@@ -20,6 +21,16 @@ public class TypeServiceImpl implements ITypeService{
 
     @Autowired
     TypeRepository repository;
+
+    @Override
+    public List<Type> findAll() {
+        return dao.findAll();
+    }
+
+    @Override
+    public Type findById(Long id) {
+        return dao.findById(id);
+    }
 
     @Override
     public Page<Type> findPages(Integer page, Integer size) {

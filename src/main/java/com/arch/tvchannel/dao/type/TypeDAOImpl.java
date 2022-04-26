@@ -8,6 +8,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TypeDAOImpl implements ITypeDAO {
 
@@ -19,6 +21,16 @@ public class TypeDAOImpl implements ITypeDAO {
     /*public TypeDAOImpl(TypeRepository repo) {
         this.repo = repo;
     }*/
+
+    @Override
+    public List<Type> findAll() {
+        return repository.findAll();
+    }
+
+    @Override
+    public Type findById(Long id) {
+        return repository.findById(id).get();
+    }
 
     @Override
     public Type create(Type type) {
