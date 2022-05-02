@@ -33,8 +33,8 @@ public class TypeController {
     @Operation(summary = " Pagination",
             description = " Finds and displays Types with requested page and size")
     @GetMapping("/get/pages")
-    @PreAuthorize("hasAnyRole('ADMIN, USER')")
-    private ResponseEntity<Page<Type>> getPages(@RequestParam Integer page, @RequestParam Integer size){
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
+    public ResponseEntity<Page<Type>> getPages(@RequestParam Integer page, @RequestParam Integer size){
 
         return ResponseEntity.ok(service.findPages(page, size));
     }
@@ -42,7 +42,7 @@ public class TypeController {
     @Operation(summary = " Get all Types",
             description = " Finds and displays all Types")
     @GetMapping("/get/all")
-    @PreAuthorize("hasAnyRole('ADMIN, USER')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public List<Type> getAll(){
 
         return typeRepository.findAll();
@@ -51,7 +51,7 @@ public class TypeController {
     @Operation(summary = " Get one Type",
             description = " Finds and displays Type with specified id")
     @GetMapping("/get/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN, USER')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public Type getById(@PathVariable Long id){
 
         return typeRepository.findById(id).orElse(null);

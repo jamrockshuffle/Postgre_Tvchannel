@@ -8,6 +8,7 @@ import com.arch.tvchannel.repository.ProgramRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.aspectj.lang.annotation.Before;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -21,13 +22,17 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.nio.charset.Charset;
 import java.time.LocalTime;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
@@ -36,6 +41,15 @@ class FridayControllerTest {
 
     @Autowired
     MockMvc mockMvc;
+
+    /*@Autowired
+    private WebApplicationContext webApplicationContext;
+
+    @Before("")
+    public void setup() {
+        //Init MockMvc Object and build
+        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+    }*/
 
     @Autowired
     @Mock
@@ -65,7 +79,7 @@ class FridayControllerTest {
                 .contentType(APPLICATION_JSON_UTF8)
                 .content(requestJson))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string(containsString((day.getProgram().getName()))));
+                .andExpect(MockMvcResultMatchers.content().string(containsString(day.getAiringTime().toString())));
 
 
     }
@@ -101,6 +115,8 @@ class FridayControllerTest {
     void getTypes() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/friday/get/all"))
+                //.with(csrf()))
+                //.andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))

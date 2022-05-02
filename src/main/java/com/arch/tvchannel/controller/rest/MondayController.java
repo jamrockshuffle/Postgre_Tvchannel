@@ -31,22 +31,22 @@ public class MondayController {
     MondayServiceImpl service;
 
     @GetMapping("/get/all")
-    @PreAuthorize("hasAnyRole('ADMIN, USER')")
-    private List<Monday> getAll(){
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
+    public List<Monday> getAll(){
 
         return dayRepository.findAll();
     }
 
     @GetMapping("/get/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN, USER')")
-    private Monday getById(@PathVariable Long id){
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
+    public Monday getById(@PathVariable Long id){
 
         return dayRepository.findById(id).orElse(null);
     }
 
     @GetMapping("/delete/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    private List<Monday> deleteById(@PathVariable Long id){
+    public List<Monday> deleteById(@PathVariable Long id){
 
         dayRepository.deleteById(id);
 

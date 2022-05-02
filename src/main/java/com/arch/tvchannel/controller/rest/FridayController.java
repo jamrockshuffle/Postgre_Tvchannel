@@ -34,22 +34,22 @@ public class FridayController {
     FridayServiceImpl service;
 
     @GetMapping("/get/all")
-    @PreAuthorize("hasAnyRole('ADMIN, USER')")
-    private List<Friday> getAll(){
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
+    public List<Friday> getAll(){
 
         return dayRepository.findAll();
     }
 
     @GetMapping("/get/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN, USER')")
-    private Friday getById(@PathVariable Long id){
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
+    public Friday getById(@PathVariable Long id){
 
         return dayRepository.findById(id).orElse(null);
     }
 
     @GetMapping("/delete/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    private List<Friday> deleteById(@PathVariable Long id){
+    public List<Friday> deleteById(@PathVariable Long id){
 
         dayRepository.deleteById(id);
 

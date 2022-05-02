@@ -31,7 +31,7 @@ public class ProgramController {
     ProgramServiceImpl service;
 
     @GetMapping("/get/all")
-    //@PreAuthorize("hasAnyRole('ADMIN, USER')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public List<Program> getAll(){
 
         //Program program = new Program(1L, "qweewq", typeRepository.getById(1L));
@@ -41,14 +41,14 @@ public class ProgramController {
     }
 
     @GetMapping("/get/{id}")
-    //@PreAuthorize("hasAnyRole('ADMIN, USER')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public Program getById(@PathVariable Long id){
 
         return programRepository.findById(id).orElse(null);
     }
 
     @GetMapping("/delete/{id}")
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Program> deleteById(@PathVariable Long id){
 
         programRepository.deleteById(id);
@@ -57,14 +57,14 @@ public class ProgramController {
     }
 
     @PostMapping("/create")
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public Program create(@RequestBody Program program){
 
         return service.create(program);
     }
 
     @PostMapping("/update")
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public Program update(@RequestBody Program program){
 
         return service.update(program);
@@ -73,7 +73,7 @@ public class ProgramController {
     @Operation(summary = " DTO Program creation",
             description = " Adds new program to the Program list. Id to be created is UUID type ")
     @PostMapping("/createDTO")
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public Program createDTO(@RequestBody ProgramDTOCreate program){
 
         return service.createDTO(program);
@@ -82,7 +82,7 @@ public class ProgramController {
     @Operation(summary = " DTO Program updating",
             description = " Updates Program with specified id")
     @PostMapping("/updateDTO")
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public Program updateDTO(@RequestBody ProgramDTOUpdate program){
 
         return service.updateDTO(program);
