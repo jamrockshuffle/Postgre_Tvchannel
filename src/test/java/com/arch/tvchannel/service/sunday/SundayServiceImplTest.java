@@ -30,12 +30,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
-@ComponentScan(basePackages = {"com.arch.tvchannel.service.sunday"})
-@ComponentScan(basePackages = {"com.arch.tvchannel.dao.sunday"})
-@ComponentScan(basePackages = {"com.arch.tvchannel.service.type"})
-@ComponentScan(basePackages = {"com.arch.tvchannel.dao.type"})
-@ComponentScan(basePackages = {"com.arch.tvchannel.service.program"})
-@ComponentScan(basePackages = {"com.arch.tvchannel.dao.program"})
+@ComponentScan(basePackages = {"com.arch.tvchannel.service"})
+@ComponentScan(basePackages = {"com.arch.tvchannel.dao"})
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class SundayServiceImplTest {
 
