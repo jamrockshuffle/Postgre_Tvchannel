@@ -74,7 +74,7 @@ class MondayControllerTest {
                 .contentType(APPLICATION_JSON_UTF8)
                 .content(requestJson))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string(containsString((day.getProgram().getName()))));
+                .andExpect(MockMvcResultMatchers.content().string(containsString(day.getAiringTime().toString())));
 
 
     }
